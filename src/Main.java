@@ -17,20 +17,29 @@ public class Main {
         Queue<Person> lineForTheRide = new LinkedList<>(generateClients());
 
         while (!lineForTheRide.isEmpty()) {
+
             Person nextClient = lineForTheRide.poll();
-            System.out.println(nextClient.getName() + " " + nextClient.getSurname() +
-                    " хочет прокатиться на аттракционе. В наличии " + nextClient.getTickets() +  " билета(ов).");
+            if (nextClient.getTickets() == 0){
+                System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
+                        "билетов не осталось :(");
+                lineForTheRide.remove(nextClient);
+            } else {
+                System.out.println(nextClient.getName() + " " + nextClient.getSurname() +
+                        " хочет прокатиться на аттракционе. В наличии " + nextClient.getTickets() + " билета(ов).");
 
-            int howManyTicketsLeft = nextClient.getTickets();
+                int howManyTicketsLeft = nextClient.getTickets();
 
-            if (howManyTicketsLeft > 0){
-                System.out.println("И " + nextClient.getName() + " " + nextClient.getSurname() + " катается на аттракционе. " +
-                        "Осталось " + (nextClient.getTickets() -1) + " шт.");
-                howManyTicketsLeft -= 1;
-                nextClient.setTickets(howManyTicketsLeft);
-                lineForTheRide.offer(nextClient);
-                System.out.println("\n");
+
+                if (howManyTicketsLeft > 0) {
+                    System.out.println("И " + nextClient.getName() + " " + nextClient.getSurname() + " катается на аттракционе. " +
+                            "Осталось " + (nextClient.getTickets() - 1) + " шт.");
+                    howManyTicketsLeft -= 1;
+                    nextClient.setTickets(howManyTicketsLeft);
+                    lineForTheRide.offer(nextClient);
+                    System.out.println("\n");
+                }
             }
+
         }
         System.out.println("Билеты кончились, все покатались.");
     }
