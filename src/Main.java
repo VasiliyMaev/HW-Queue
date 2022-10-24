@@ -19,31 +19,26 @@ public class Main {
         while (!lineForTheRide.isEmpty()) {
 
             Person nextClient = lineForTheRide.poll();
-//            if (nextClient.getTickets() == 0){
-//                System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
-//                        "билетов не осталось :(");
-//                lineForTheRide.remove(nextClient);
-//            } else {
-                System.out.println(nextClient.getName() + " " + nextClient.getSurname() +
-                        " хочет прокатиться на аттракционе. В наличии " + nextClient.getTickets() + " билета(ов).");
+            System.out.println(nextClient.getName() + " " + nextClient.getSurname() +
+                    " хочет прокатиться на аттракционе. В наличии " + nextClient.getTickets() + " билета(ов).");
 
-                int howManyTicketsLeft = nextClient.getTickets();
+            int howManyTicketsLeft = nextClient.getTickets();
 
 
-                if (howManyTicketsLeft > 0) {
-                    System.out.println("И " + nextClient.getName() + " " + nextClient.getSurname() + " катается на аттракционе. " +
-                            "Осталось " + (nextClient.getTickets() - 1) + " шт.");
-                    howManyTicketsLeft -= 1;
-                    nextClient.setTickets(howManyTicketsLeft);
-                    lineForTheRide.offer(nextClient);
+            if (howManyTicketsLeft > 0) {
+                System.out.println("И " + nextClient.getName() + " " + nextClient.getSurname() + " катается на аттракционе. " +
+                        "Осталось " + (nextClient.getTickets() - 1) + " шт.");
+                howManyTicketsLeft -= 1;
+                nextClient.setTickets(howManyTicketsLeft);
+                lineForTheRide.offer(nextClient);
 
 
-                    if (nextClient.getTickets() == 0){
-                        System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
-                                "билетов не осталось :(");
-                        lineForTheRide.remove(nextClient);
+                if (nextClient.getTickets() == 0) {
+                    System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
+                            "билетов не осталось :(");
+                    lineForTheRide.remove(nextClient);
                 }
-                    System.out.println("\n");
+                System.out.println("\n");
             }
 
         }
