@@ -5,11 +5,11 @@ import java.util.Queue;
 public class Main {
     public static List<Person> generateClients() {
         return List.of(
-                new Person("Р“СЂРёРіРѕСЂРёР№", "Р Р°СЃРїСѓС‚РёРЅ", 4),
-                new Person("РќР°С‚Р°С€Р°", "Р РѕСЃС‚РѕРІР°", 7),
-                new Person("РР±СЂР°РіРёРј", "РњР°С…РјСѓРґРѕРІ", 2),
-                new Person("РўРµРѕРґРµРЅ", "Р РѕС…Р°РЅСЃРєРёР№", 6),
-                new Person("Р›СЋР±Р°РІР°", "РњР°СЂСѓСЃСЊРєРёРЅР°", 3)
+                new Person("Григорий", "Распутин", 4),
+                new Person("Наташа", "Ростова", 7),
+                new Person("Ибрагим", "Махмудов", 2),
+                new Person("Теоден", "Роханский", 6),
+                new Person("Любава", "Маруськина", 3)
         );
     }
 
@@ -19,28 +19,34 @@ public class Main {
         while (!lineForTheRide.isEmpty()) {
 
             Person nextClient = lineForTheRide.poll();
-            if (nextClient.getTickets() == 0){
-                System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " Р±РѕР»СЊС€Рµ РЅРµ РїРѕРµРґРµС‚, " +
-                        "Р±РёР»РµС‚РѕРІ РЅРµ РѕСЃС‚Р°Р»РѕСЃСЊ :(");
-                lineForTheRide.remove(nextClient);
-            } else {
+//            if (nextClient.getTickets() == 0){
+//                System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
+//                        "билетов не осталось :(");
+//                lineForTheRide.remove(nextClient);
+//            } else {
                 System.out.println(nextClient.getName() + " " + nextClient.getSurname() +
-                        " С…РѕС‡РµС‚ РїСЂРѕРєР°С‚РёС‚СЊСЃСЏ РЅР° Р°С‚С‚СЂР°РєС†РёРѕРЅРµ. Р’ РЅР°Р»РёС‡РёРё " + nextClient.getTickets() + " Р±РёР»РµС‚Р°(РѕРІ).");
+                        " хочет прокатиться на аттракционе. В наличии " + nextClient.getTickets() + " билета(ов).");
 
                 int howManyTicketsLeft = nextClient.getTickets();
 
 
                 if (howManyTicketsLeft > 0) {
-                    System.out.println("Р " + nextClient.getName() + " " + nextClient.getSurname() + " РєР°С‚Р°РµС‚СЃСЏ РЅР° Р°С‚С‚СЂР°РєС†РёРѕРЅРµ. " +
-                            "РћСЃС‚Р°Р»РѕСЃСЊ " + (nextClient.getTickets() - 1) + " С€С‚.");
+                    System.out.println("И " + nextClient.getName() + " " + nextClient.getSurname() + " катается на аттракционе. " +
+                            "Осталось " + (nextClient.getTickets() - 1) + " шт.");
                     howManyTicketsLeft -= 1;
                     nextClient.setTickets(howManyTicketsLeft);
                     lineForTheRide.offer(nextClient);
-                    System.out.println("\n");
+
+
+                    if (nextClient.getTickets() == 0){
+                        System.out.println(nextClient.getName() + " " + nextClient.getSurname() + " больше не поедет, " +
+                                "билетов не осталось :(");
+                        lineForTheRide.remove(nextClient);
                 }
+                    System.out.println("\n");
             }
 
         }
-        System.out.println("Р‘РёР»РµС‚С‹ РєРѕРЅС‡РёР»РёСЃСЊ, РІСЃРµ РїРѕРєР°С‚Р°Р»РёСЃСЊ.");
+        System.out.println("Билеты кончились, все покатались.");
     }
 }
